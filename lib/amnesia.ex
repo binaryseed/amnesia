@@ -91,6 +91,14 @@ defmodule Amnesia do
   end
 
   @doc """
+  Connect to a newly started RAM node with an empty schema, see `mnesia:change_config`
+  """
+  @spec add_nodes([node]) :: :ok | { :error, any }
+  def add_nodes(nodes) do
+    :mnesia.change_config(:extra_db_nodes, nodes)
+  end
+
+  @doc """
   Lock the whole database on the given node for the given keys with the given
   lock, see `mnesia:lock`.
 
